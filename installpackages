@@ -1,0 +1,31 @@
+# string i 패키지를 설치합니다
+# 미리 컴파일된버전을 설치하는 방법입니다.
+install.packages(
+  "http://github.com/gagolews/stringi/raw/master/devel/winbuilder/3.5/stringi_1.2.4.zip",
+  repos = NULL
+)
+
+## 패키지 버전을 확인해주세요. 1.2.4로 나오면 잘 설치된 것입니다.
+packageVersion("stringi")
+
+# jdk 8 설치
+#   https://www.oracle.com/technetwork/java/javase/downloads/index.html
+#   Java SE Development Kit 8uXXX 위치에 Accept License Agreement 클릭
+#   컴퓨터에 맞는 bit 버전을 다운로드
+
+test = "한글 테스트 입니다."
+
+# KoPLP 설치
+install.packages("KoNLP")
+library(KoNLP)
+extractNoun(test)
+
+
+# RcppMeCab
+install.packages("RmecabKo")
+install.packages("RcppMeCab")
+RmecabKo::install_mecab("c:/mecab") # c: 에 권한이 없다면 "d:/mecab"으로 설정
+library("RcppMeCab")
+test = "오늘은 날씨가 참으로 맑습니다. 오늘하루정도는 아침늦게 일어나 모닝 스타벅스 한잔 때리면서 즐거운 하루를 즐기시기 바랍니다!~! ㅎㅎ -시리"
+test = iconv(test, to = "UTF-8")
+pos(test)
